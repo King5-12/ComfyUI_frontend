@@ -52,7 +52,7 @@ const modelPreviewUrl = computed(() => {
   const extension = modelDef.value.file_name.split('.').pop()
   const filename = modelDef.value.file_name.replace(`.${extension}`, '.webp')
   const encodedFilename = encodeURIComponent(filename).replace(/%2F/g, '/')
-  return `/api/experiment/models/preview/${folder}/${path_index}/${encodedFilename}`
+  return `api/experiment/models/preview/${folder}/${path_index}/${encodedFilename}`
 })
 
 const previewRef = ref<InstanceType<typeof ModelPreview> | null>(null)
@@ -94,17 +94,18 @@ const modelContentElement = ref<HTMLElement | undefined>()
 const isHovered = ref(false)
 
 const showPreview = computed(() => {
-  return (
-    isHovered.value &&
-    modelDef.value &&
-    modelDef.value.has_loaded_metadata &&
-    (modelDef.value.author ||
-      modelDef.value.simplified_file_name != modelDef.value.title ||
-      modelDef.value.description ||
-      modelDef.value.usage_hint ||
-      modelDef.value.trigger_phrase ||
-      modelDef.value.image)
-  )
+  return false
+  // return (
+  //   isHovered.value &&
+  //   modelDef.value &&
+  //   modelDef.value.has_loaded_metadata &&
+  //   (modelDef.value.author ||
+  //     modelDef.value.simplified_file_name != modelDef.value.title ||
+  //     modelDef.value.description ||
+  //     modelDef.value.usage_hint ||
+  //     modelDef.value.trigger_phrase ||
+  //     modelDef.value.image)
+  // )
 })
 
 const handleMouseEnter = async () => {
